@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>roadtipwinner</title>
+</head>
+<body>
+
+    <h1></h1>
+    <p>Points: <span id="points">0</span></p>
+    <div id="cards"></div>
+
+
+    <script>
+const taskies=[
+"A person with colored hair",
+""
+]
+let points = 0;
+let activeCards = [];
+function getrandomCard(){
+    const randomIndex = Math.floor(Math.random() * tasks.length);
+    return taskies [randomIndex];
+}
+for (let i = 0; i < 3; i++) {
+   activeCards.push(getrandomCard()) } ;
+   function displayCardsss(){
+    const cardContainer = document.getElementById("cards");
+    cardContainer.innerHTML = "";
+
+    activeCards.forEach((taskies, index) => {
+
+    cardContainer.innerHTML += `
+    <div>
+    
+    <p>${taskies}</p>
+                <button onclick="completeCard(${index})">
+                    Complete</button>
+                    </div>
+                    ;`
+                });
+            }
+function completeCard(index){
+    points ++;
+    document.getElementById("points").textContent = points;
+    activeCards
+
+}  
+      </script>
+</body>
+</html> 
