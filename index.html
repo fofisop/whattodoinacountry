@@ -2,32 +2,70 @@
 <html lang="en">
 <head>
     <style>
+#cards{
+    display:flex;
+    gap:20px;
+}
 
-    </style>
+#cards div{
+    border:2px solid black;
+    padding:20px;
+    width:200px;
+    border-radius:10px;
+}
+
+    </style>c
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>roadtipwinner</title>
 </head>
 <body>
+    <div id="startScreen">
 
+    <h1>Road Trip Winner</h1>
+
+    <h2>Rules:</h2>
+    <p>
+
+    </p>
+    </div>
+
+<div id="game" style="display:none;">
     <h1></h1>
     <p>Points: <span id="points">0</span></p>
+    <input type="number" id="goal" placeholder="Goal Points">
+<button onclick="setGoal()">Set Goal</button>
     <div id="cards"></div>
+</div>
 
 
     <script>
 const taskies=[
 "A person with colored hair",
+"A motorcycle",
+"A plane",
+"A boat",
+"A red car",
+"A police car",
+"A big truck",
+"A building more than ten stories tall",
+
 ""
 ]
 let points = 0;
 let activeCards = [];
 function getrandomCard(){
-    const randomIndex = Math.floor(Math.random() * tasks.length);
+    const randomIndex = Math.floor(Math.random() * taskies.length);
     return taskies [randomIndex];
 }
 for (let i = 0; i < 3; i++) {
-   activeCards.push(getrandomCard()) } ;
+     let newCard = getrandomCard();
+
+    while (activeCards.includes(newCard)) {
+        newCard = getrandomCard();
+    }
+     activeCards.push(newCard);
+} ;
    function displayCardsss(){
     const cardContainer = document.getElementById("cards");
     cardContainer.innerHTML = "";
@@ -41,15 +79,25 @@ for (let i = 0; i < 3; i++) {
                 <button onclick="completeCard(${index})">
                     Complete</button>
                     </div>
-                    ;`
+                    `
                 });
             }
 function completeCard(index){
     points ++;
     document.getElementById("points").textContent = points;
-    activeCards
+    let newCard = getrandomCard();
+
+while (activeCards.includes(newCard)) {
+    newCard = getrandomCard();
+}
+
+activeCards[index] = newCard
+;
+    displayCardsss();
+
 
 }  
+displayCardsss();
       </script>
 </body>
 </html> 
