@@ -14,7 +14,7 @@
     border-radius:10px;
 }
 
-    </style>c
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>roadtipwinner</title>
@@ -28,14 +28,28 @@
     <p>
 
     </p>
+    <input
+    type="number"
+    id="goalInput"
+    value="100"
+>
+
+<button onclick="startGame()">
+    Start Game
+</button>
     </div>
 
 <div id="game" style="display:none;">
     <h1></h1>
     <p>Points: <span id="points">0</span></p>
-    <input type="number" id="goal" placeholder="Goal Points">
-<button onclick="setGoal()">Set Goal</button>
-    <div id="cards"></div>
+    <input
+    type="number"
+    id="goalInput"
+    value="100"
+>
+<button onclick="startGame()">
+    Start Game
+</button><div id="cards"></div>
 </div>
 
 
@@ -52,6 +66,7 @@ const taskies=[
 
 ""
 ]
+let goal = Infinity;
 let points = 0;
 let activeCards = [];
 function getrandomCard(){
@@ -85,6 +100,10 @@ for (let i = 0; i < 3; i++) {
 function completeCard(index){
     points ++;
     document.getElementById("points").textContent = points;
+    if (points >= goal) {
+    alert(" You reached your goal!");
+
+}
     let newCard = getrandomCard();
 
 while (activeCards.includes(newCard)) {
@@ -98,6 +117,16 @@ activeCards[index] = newCard
 
 }  
 displayCardsss();
+
+
+function startGame() {
+
+    goal = Number(document.getElementById("goalInput").value);
+
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("game").style.display = "block";
+
+}
       </script>
 </body>
 </html> 
