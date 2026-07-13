@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>t
 <html lang="en">
 <head>
     <style>
@@ -26,8 +26,15 @@
 
     <h2>Rules:</h2>
     <p>
+Find things on your road trip that match the cards.
+<br>
+Click <strong>Complete</strong> when you find one.
+<br>
 
-    </p>
+Each completed card gives you 1 point!
+<br>
+Reach your chosen goal to win!
+</p>
     <input
     type="number"
     id="goalInput"
@@ -42,14 +49,17 @@
 <div id="game" style="display:none;">
     <h1></h1>
     <p>Points: <span id="points">0</span></p>
-    <input
-    type="number"
-    id="goalInput"
-    value="100"
->
-<button onclick="startGame()">
-    Start Game
-</button><div id="cards"></div>
+    <div id="cards"></div>
+    <h2>Shop</h2>
+
+<p>Swap Cards: <span id="swaps">0</span></p>
+
+<button onclick="buySwap()">
+    Buy Swap Card (10 Points)
+</button>
+<button onclick="buyUwuowo()">
+    Buy Double Points (15 Points)
+</button>
 </div>
 
 
@@ -67,6 +77,8 @@ const taskies=[
 ""
 ]
 let goal = Infinity;
+let swaps = 0;
+let uwuowo = false;
 let points = 0;
 let activeCards = [];
 function getrandomCard(){
@@ -84,7 +96,6 @@ for (let i = 0; i < 3; i++) {
    function displayCardsss(){
     const cardContainer = document.getElementById("cards");
     cardContainer.innerHTML = "";
-
     activeCards.forEach((taskies, index) => {
 
     cardContainer.innerHTML += `
@@ -93,12 +104,25 @@ for (let i = 0; i < 3; i++) {
     <p>${taskies}</p>
                 <button onclick="completeCard(${index})">
                     Complete</button>
-                    </div>
+                    
+                     <button onclick="swapCard(${index})">
+Swap Me
+</button>
+         </div>    
+                
                     `
-                });
+                    
+                      });
+                      
             }
 function completeCard(index){
-    points ++;
+    if (uwuowo) {
+    points += 2;
+} else {
+    points++;
+}
+
+document.getElementById("points").textContent = points;
     document.getElementById("points").textContent = points;
     if (points >= goal) {
     alert(" You reached your goal!");
@@ -127,6 +151,63 @@ function startGame() {
     document.getElementById("game").style.display = "block";
 
 }
+function buySwap() {
+
+    if (points >= 10) {
+
+        points -= 10;
+        swaps++;
+
+        document.getElementById("points").textContent = points;
+        document.getElementById("swaps").textContent = swaps;
+    } else {
+
+        alert("You need 10 points!");
+
+    }
+
+}
+function swapCard(index){
+
+    if (swaps <= 0){
+        alert("You don't have any swap cards!");
+        return;
+    }
+
+    swaps--;
+
+    document.getElementById("swaps").textContent = swaps;
+
+    let newCard = getrandomCard();
+
+    while (activeCards.includes(newCard)){
+        newCard = getrandomCard();
+    }
+
+    activeCards[index] = newCard;
+
+    displayCardsss();
+}
+function buyUwuowo() {
+
+    if (points < 15) {
+        alert("You need 15 points!");
+        return;
+    }
+
+    points -= 15;
+    document.getElementById("points").textContent = points;
+
+    uwuowo = true;
+
+    alert("Double Points activated for 5 minutes!");
+
+    setTimeout(function () {
+        uwuowo = false;
+        alert("Double Points has ended!");
+    }, 300000);
+}
+
       </script>
 </body>
 </html> 
