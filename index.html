@@ -136,9 +136,78 @@ const taskies=[
 "A red car",
 "A police car",
 "A big truck",
+"A lake or river",
+"A mountain",
 "A building more than ten stories tall",
+"A bird",
+"A stopsign",
+"A mailbox",
+"A restaurant",
+"A gas station",
+"A motel/hotel",
+"Graffiti or a mural",
+"A statue",
+"A fountain",
+"A car with something on its roof",
+"Someone wearing sunglasses",
+"A yellow house",
+"A blue house",
+"A modern house",
+"A farm animal",
+"Fields of plants",
+"A license plate with the letter: Z",
+"A license plate with the letter: X",
+"A license plate with the letter: Y",
+"A bike",
+"A dog in a car",
+"A person walking their dog",
+"A construction vehicle",
+"A traffic cone",
+"A green car",
+"A convertible",
+"A school bus",
+"An ambulance",
+"A fire truck",
+"A tractor",
+"A train",
+"A bridge",
+"A tunnel",
+"A water tower",
+"A wind turbine",
+"A person wearing a hat",
+"A playground",
+"A church",
+"A barn",
+"A swimming pool",
+"A person running",
+"A house with a porch",
+"A house with a fence",
+"A basketball hoop",
+"A large tree",
+"A fallen tree",
+"A flower garden",
+"A food truck",
+"A roundabout",
+"A yield sign",
+"A one-way sign",
+"A speed limit sign",
+"A fire station",
+"A car wash",
+"A movie theater",
+"A library",
+"A school",
+"A fire hydrant",
+"A shopping cart outside of a store",
+"A flag",
+"A person with a suitcase",
+"A group of five or more people",
+"Someone sitting on a bench",
+"A person using an umbrella",
+"A giant inflatable",
+"A camper or RV",
+"A neon sign",
+"A coffee shop",
 
-""
 ]
 let goal = Infinity;
 let swaps = 0;
@@ -274,6 +343,13 @@ function startGame() {
     }
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("game").style.display = "block";
+}
+
+
+function saveGame() {
+    localStorage.setItem("points", points);
+    localStorage.setItem("swaps", swaps);
+    localStorage.setItem("activeCards", JSON.stringify(activeCards));
 }
       </script>
 </body>
