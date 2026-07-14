@@ -1,19 +1,78 @@
-<!DOCTYPE html>t
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <style>
-#cards{
-    display:flex;
-    gap:20px;
+#cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 30px 0;
 }
 
-#cards div{
-    border:2px solid black;
-    padding:20px;
-    width:200px;
-    border-radius:10px;
+
+#cards div {
+    background-color: white;
+    border: 2px solid black;
+    padding: 20px;
+    width: 200px;
+    min-height: 120px;
+    border-radius: 15px;
+    box-shadow: 4px 4px 0px #333;
+}
+#shopItUp {
+ max-width: 500px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+#shopItUp button{
+     background-color: #6f9eaf;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #AEC6CF;
+    margin: 0;
+    padding: 30px;
+}
+input[type="number"] {
+    padding: 10px;
+    width: 100px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    font-size: 16px;
 }
 
+#game {
+    max-width: 1000px;
+    margin: auto;
+}
+#startScreen {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+button {
+    padding: 10px 16px;
+    margin: 8px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+}
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +81,7 @@
 <body>
     <div id="startScreen">
 
-    <h1>Road Trip Winner</h1>
+    <h1>The Road Trip Quest</h1>
 
     <h2>Rules:</h2>
     <p>
@@ -33,14 +92,17 @@ Click <strong>Complete</strong> when you find one.
 
 Each completed card gives you 1 point!
 <br>
-Reach your chosen goal to win!
+Reach your chosen goal to win, or choose Unlimited Mode!
 </p>
     <input
     type="number"
     id="goalInput"
-    value="100"
+    value="50"
 >
-
+<label>
+    <input type="checkbox" id="modeOfTheUnlimitedPowerHAHAHAH">
+    Unlimited Mode
+</label>
 <button onclick="startGame()">
     Start Game
 </button>
@@ -50,6 +112,7 @@ Reach your chosen goal to win!
     <h1></h1>
     <p>Points: <span id="points">0</span></p>
     <div id="cards"></div>
+    <div id="shopItUp">
     <h2>Shop</h2>
 
 <p>Swap Cards: <span id="swaps">0</span></p>
@@ -60,6 +123,7 @@ Reach your chosen goal to win!
 <button onclick="buyUwuowo()">
     Buy Double Points (15 Points)
 </button>
+</div>
 </div>
 
 
@@ -123,7 +187,6 @@ function completeCard(index){
 }
 
 document.getElementById("points").textContent = points;
-    document.getElementById("points").textContent = points;
     if (points >= goal) {
     alert(" You reached your goal!");
 
@@ -143,14 +206,7 @@ activeCards[index] = newCard
 displayCardsss();
 
 
-function startGame() {
 
-    goal = Number(document.getElementById("goalInput").value);
-
-    document.getElementById("startScreen").style.display = "none";
-    document.getElementById("game").style.display = "block";
-
-}
 function buySwap() {
 
     if (points >= 10) {
@@ -207,7 +263,18 @@ function buyUwuowo() {
         alert("Double Points has ended!");
     }, 300000);
 }
+function startGame() {
 
+    unlimited = document.getElementById("modeOfTheUnlimitedPowerHAHAHAH").checked;
+
+    if (unlimited) {
+        goal = Infinity;
+    } else {
+        goal = Number(document.getElementById("goalInput").value);
+    }
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("game").style.display = "block";
+}
       </script>
 </body>
 </html> 
