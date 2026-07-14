@@ -269,7 +269,7 @@ while (activeCards.includes(newCard)) {
 activeCards[index] = newCard
 ;
     displayCardsss();
-
+saveGame();
 
 }  
 displayCardsss();
@@ -290,7 +290,7 @@ function buySwap() {
         alert("You need 10 points!");
 
     }
-
+saveGame();
 }
 function swapCard(index){
 
@@ -312,6 +312,7 @@ function swapCard(index){
     activeCards[index] = newCard;
 
     displayCardsss();
+    saveGame();
 }
 function buyUwuowo() {
 
@@ -351,6 +352,27 @@ function saveGame() {
     localStorage.setItem("swaps", swaps);
     localStorage.setItem("activeCards", JSON.stringify(activeCards));
 }
+function loadGame(){
+     const savedPoints = localStorage.getItem("points");
+    const savedSwaps = localStorage.getItem("swaps");
+    const savedCards = localStorage.getItem("activeCards");
+
+    if (savedPoints !== null) {
+        points = Number(savedPoints);
+        document.getElementById("points").textContent = points;
+}
+   if (savedSwaps !== null) {
+        swaps = Number(savedSwaps);
+        document.getElementById("swaps").textContent = swaps;
+    }
+    if (savedCards !== null) {
+        activeCards = JSON.parse(savedCards);
+        displayCardsss();
+    }
+
+
+}
+loadGame();
       </script>
 </body>
 </html> 
